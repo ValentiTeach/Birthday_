@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>З Днем Народження ✿</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --blush-1:#fff8fa;
+    --blush-2:#ffeef3;
+    --blush-3:#ffdce8;
+    --rose-1:#ffb6c8;
+    --rose-2:#ff9eb5;
+    --rose-3:#e87a98;
+    --rose-deep:#b8546e;
+    --plum:#6e3a4b;
+    --ink:#4a2530;
+    --cream:#fffaf5;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html,body{height:100%;overflow-x:hidden;}
+  body{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 800px at 20% 10%,#ffe7f0 0%,transparent 60%),
+      radial-gradient(900px 700px at 90% 90%,#ffd9e6 0%,transparent 65%),
+      linear-gradient(135deg,var(--blush-1) 0%,var(--blush-2) 50%,var(--blush-3) 100%);
+    min-height:100vh;
+    position:relative;
+    -webkit-tap-highlight-color:transparent;
+    overflow-y:auto;
+  }
+  body.no-scroll{overflow:hidden;}
+
+  /* ─── Subtle paper grain texture ─── */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    background-image:
+      radial-gradient(rgba(184,84,110,.05) 1px,transparent 1px),
+      radial-gradient(rgba(184,84,110,.03) 1px,transparent 1px);
+    background-size:24px 24px,48px 48px;
+    background-position:0 0,12px 12px;
+    pointer-events:none;
+    z-index:1;
+    mix-blend-mode:multiply;
+  }
+
+  /* ─── Floating petals ambient ─── */
+  .petals{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden;}
+  .petal{
+    position:absolute;
+    width:10px;height:10px;
+    background:radial-gradient(circle at 30% 30%,#ffc3d4,#ff8fa3);
+    border-radius:50% 0;
+    opacity:0;
+    animation:floatDown linear infinite;
+  }
+  @keyframes floatDown{
+    0%{transform:translateY(-10vh) rotate(0deg);opacity:0;}
+    8%{opacity:.55;}
+    92%{opacity:.55;}
+    100%{transform:translateY(110vh) rotate(540deg);opacity:0;}
+  }
+
+  /* ─── Intro screen ─── */
+  .intro{
+    position:fixed;inset:0;
+    display:flex;flex-direction:column;
+    align-items:center;justify-content:center;
+    z-index:200;
+    padding:2rem;
+    background:
+      radial-gradient(800px 600px at 50% 40%,#fff5f8 0%,transparent 70%),
+      linear-gradient(135deg,var(--blush-1) 0%,var(--blush-3) 100%);
+    transition:opacity 1.2s ease,transform 1.4s ease;
+  }
+  .intro.hidden{opacity:0;transform:scale(1.08);pointer-events:none;}
+
+  .intro-frame{
+    position:relative;
+    text-align:center;
+    padding:3rem 2rem;
+    max-width:90vw;
+  }
+  .ornament{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--rose-3);
+    letter-spacing:.5em;
+    font-size:1rem;
+    margin-bottom:1.5rem;
+    opacity:.7;
+  }
+  .ornament span{display:inline-block;animation:gentleFloat 3s ease-in-out infinite;}
+  .ornament span:nth-child(2){animation-delay:.3s;}
+  .ornament span:nth-child(3){animation-delay:.6s;}
+  @keyframes gentleFloat{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-4px);}
+  }
+
+  .intro-eyebrow{
+    font-family:'Caveat',cursive;
+    color:var(--rose-deep);
+    font-size:clamp(1.1rem,2.5vw,1.4rem);
+    letter-spacing:2px;
+    margin-bottom:.5rem;
+    opacity:.85;
+  }
+  .intro-title{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-style:italic;
+    font-size:clamp(2.4rem,6vw,4.2rem);
+    color:var(--plum);
+    line-height:1.05;
+    margin-bottom:.4rem;
+    letter-spacing:-.5px;
+  }
+  .intro-title em{font-style:normal;color:var(--rose-3);font-weight:400;}
+  .intro-sub{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:clamp(1rem,2vw,1.25rem);
+    color:var(--rose-deep);
+    opacity:.7;
+    max-width:30rem;
+    margin:.5rem auto 2.5rem;
+    line-height:1.5;
+  }
+
+  .start-btn{
+    position:relative;
+    padding:1.05rem 2.8rem;
+    background:linear-gradient(135deg,var(--rose-2) 0%,var(--rose-1) 100%);
+    color:#fff;
+    border:none;
+    border-radius:999px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.2rem;
+    font-weight:500;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    cursor:pointer;
+    box-shadow:
+      0 10px 30px rgba(232,122,152,.35),
+      inset 0 1px 0 rgba(255,255,255,.4);
+    transition:transform .3s ease,box-shadow .3s ease;
+    animation:btnPulse 2.8s ease-in-out infinite;
+  }
+  @keyframes btnPulse{
+    0%,100%{box-shadow:0 10px 30px rgba(232,122,152,.35),inset 0 1px 0 rgba(255,255,255,.4);}
+    50%{box-shadow:0 14px 40px rgba(232,122,152,.55),inset 0 1px 0 rgba(255,255,255,.4);}
+  }
+  .start-btn:hover{transform:translateY(-3px);}
+  .start-btn:active{transform:translateY(0);}
+
+  .intro-corner{
+    position:absolute;
+    color:var(--rose-2);
+    opacity:.4;
+    font-size:2rem;
+  }
+  .intro-corner.tl{top:8%;left:8%;animation:gentleFloat 4s ease-in-out infinite;}
+  .intro-corner.tr{top:10%;right:10%;animation:gentleFloat 4.5s ease-in-out infinite reverse;}
+  .intro-corner.bl{bottom:12%;left:12%;animation:gentleFloat 5s ease-in-out infinite;}
+  .intro-corner.br{bottom:10%;right:8%;animation:gentleFloat 4.2s ease-in-out infinite reverse;}
+
+  /* ─── Butterfly stage ─── */
+  .stage{
+    position:fixed;inset:0;
+    z-index:50;
+    pointer-events:none;
+  }
+  .butterfly{
+    position:absolute;
+    width:46px;height:38px;
+    transform:translate(-50%,-50%);
+    transition:left 2.6s cubic-bezier(.34,1.15,.4,1),
+               top 2.6s cubic-bezier(.34,1.15,.4,1),
+               opacity .8s ease;
+    opacity:0;
+    pointer-events:auto;
+    cursor:pointer;
+    filter:drop-shadow(0 4px 6px rgba(184,84,110,.25));
+    will-change:transform,left,top;
+  }
+  .butterfly svg{width:100%;height:100%;overflow:visible;}
+  .wing{
+    transform-origin:50% 50%;
+    animation:flap .32s ease-in-out infinite alternate;
+  }
+  .wing.right{animation-name:flapR;}
+  @keyframes flap{
+    0%{transform:scaleX(1);}
+    100%{transform:scaleX(.35);}
+  }
+  @keyframes flapR{
+    0%{transform:scaleX(1);}
+    100%{transform:scaleX(.35);}
+  }
+  .butterfly:hover .wing{animation-duration:.15s;}
+  .butterfly.bounce{animation:bounce .8s ease;}
+  @keyframes bounce{
+    0%{transform:translate(-50%,-50%) scale(1);}
+    50%{transform:translate(-50%,-50%) scale(1.4) rotate(15deg);}
+    100%{transform:translate(-50%,-50%) scale(1);}
+  }
+
+  /* ─── Central composition ─── */
+  .center{
+    position:fixed;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    z-index:30;
+    text-align:center;
+    pointer-events:none;
+    opacity:0;
+    transition:opacity 1.4s ease 2.4s,transform 1.4s ease 2.4s;
+  }
+  .center.show{opacity:1;}
+
+  .age-wrap{
+    position:relative;
+    display:inline-block;
+  }
+  .age{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-weight:300;
+    font-size:clamp(7rem,18vw,13rem);
+    line-height:1;
+    color:transparent;
+    background:linear-gradient(180deg,var(--rose-2) 0%,var(--rose-deep) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    letter-spacing:-.06em;
+    text-shadow:0 8px 30px rgba(184,84,110,.15);
+  }
+  .age::after{
+    content:"";
+    position:absolute;
+    left:50%;bottom:-.15em;
+    width:60%;height:1px;
+    background:linear-gradient(90deg,transparent,var(--rose-3),transparent);
+    transform:translateX(-50%);
+  }
+  .center-title{
+    margin-top:1.2rem;
+    font-family:'Caveat',cursive;
+    font-size:clamp(1.6rem,3.5vw,2.2rem);
+    color:var(--plum);
+    letter-spacing:1px;
+  }
+  .center-title small{
+    display:block;
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:.55em;
+    letter-spacing:6px;
+    color:var(--rose-deep);
+    opacity:.75;
+    text-transform:uppercase;
+    margin-top:.4rem;
+  }
+
+  /* sparkles around center */
+  .sparkle{
+    position:absolute;
+    color:var(--rose-2);
+    opacity:0;
+    pointer-events:none;
+    animation:sparkleIn 1.4s ease forwards;
+    font-size:1.5rem;
+  }
+  @keyframes sparkleIn{
+    0%{opacity:0;transform:scale(0) rotate(0);}
+    50%{opacity:1;transform:scale(1.2) rotate(180deg);}
+    100%{opacity:.6;transform:scale(1) rotate(360deg);}
+  }
+
+  /* ─── Wishes section ─── */
+  .wishes{
+    position:relative;
+    z-index:40;
+    max-width:780px;
+    margin:0 auto;
+    padding:100vh 1.5rem 8rem;
+    opacity:0;
+    transition:opacity 1.4s ease;
+    pointer-events:none;
+  }
+  .wishes.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+
+  .scroll-hint{
+    position:fixed;
+    left:50%;bottom:2rem;
+    transform:translateX(-50%);
+    color:var(--rose-deep);
+    font-family:'Caveat',cursive;
+    font-size:1.05rem;
+    letter-spacing:1.5px;
+    opacity:0;
+    transition:opacity .8s ease;
+    z-index:60;
+    pointer-events:none;
+    text-align:center;
+    line-height:1.2;
+  }
+  .scroll-hint.show{opacity:.85;animation:hintBob 2s ease-in-out infinite;}
+  .scroll-hint::after{
+    content:"↓";
+    display:block;
+    font-size:1.4rem;
+    margin-top:.25rem;
+  }
+  @keyframes hintBob{
+    0%,100%{transform:translateX(-50%) translateY(0);}
+    50%{transform:translateX(-50%) translateY(6px);}
+  }
+
+  .wish{
+    position:relative;
+    margin:5rem 0;
+    padding:0 1rem;
+    opacity:0;
+    transform:translateY(40px);
+    transition:opacity 1s ease,transform 1s ease;
+  }
+  .wish.visible{opacity:1;transform:translateY(0);}
+
+  .wish-num{
+    font-family:'Caveat',cursive;
+    font-size:1.1rem;
+    color:var(--rose-3);
+    letter-spacing:3px;
+    margin-bottom:.5rem;
+    text-transform:uppercase;
+    opacity:.7;
+  }
+  .wish-text{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:300;
+    font-size:clamp(1.4rem,3.2vw,2rem);
+    line-height:1.45;
+    color:var(--plum);
+    font-style:italic;
+  }
+  .wish-text strong{
+    font-style:normal;
+    font-weight:500;
+    color:var(--rose-deep);
+    background:linear-gradient(180deg,transparent 60%,rgba(255,182,200,.4) 60%);
+    padding:0 .15em;
+  }
+  .wish-divider{
+    display:block;
+    width:60px;
+    height:1px;
+    background:linear-gradient(90deg,transparent,var(--rose-3),transparent);
+    margin:1.5rem 0;
+    border:none;
+  }
+  .wish.center-align{text-align:center;}
+  .wish.center-align .wish-divider{margin:1.5rem auto;}
+
+  .wish-icon{
+    display:block;
+    font-size:1.8rem;
+    color:var(--rose-3);
+    margin-bottom:1rem;
+    opacity:.8;
+  }
+  .wish.center-align .wish-icon{text-align:center;}
+
+  .signature{
+    margin-top:6rem;
+    text-align:center;
+    padding:3rem 1rem;
+    border-top:1px solid rgba(184,84,110,.15);
+    border-bottom:1px solid rgba(184,84,110,.15);
+  }
+  .signature-line{
+    font-family:'Caveat',cursive;
+    font-size:clamp(1.6rem,4vw,2.4rem);
+    color:var(--rose-deep);
+    line-height:1.3;
+    margin-bottom:1rem;
+  }
+  .signature-name{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:1rem;
+    letter-spacing:6px;
+    color:var(--plum);
+    opacity:.7;
+    text-transform:uppercase;
+  }
+
+  .replay-btn{
+    display:block;
+    margin:3rem auto 0;
+    padding:.9rem 2.4rem;
+    background:transparent;
+    color:var(--rose-deep);
+    border:1px solid var(--rose-2);
+    border-radius:999px;
+    font-family:'Cormorant Garamond',serif;
+    font-size:1rem;
+    font-style:italic;
+    letter-spacing:2px;
+    cursor:pointer;
+    transition:all .3s ease;
+  }
+  .replay-btn:hover{
+    background:var(--rose-1);
+    color:#fff;
+    border-color:var(--rose-1);
+    transform:translateY(-2px);
+  }
+
+  .interactive-hint{
+    text-align:center;
+    margin-top:2rem;
+    font-family:'Caveat',cursive;
+    color:var(--rose-deep);
+    font-size:1.1rem;
+    opacity:.7;
+    letter-spacing:.5px;
+  }
+
+  /* ─── Mobile tweaks ─── */
+  @media (max-width:600px){
+    .butterfly{width:38px;height:32px;}
+    .wishes{padding:90vh 1rem 6rem;}
+    .wish{margin:4rem 0;}
+    .intro-corner{font-size:1.4rem;}
+  }
+
+  /* prefers-reduced-motion */
+  @media (prefers-reduced-motion:reduce){
+    .wing,.btnPulse,.petal,.ornament span{animation:none !important;}
+    .butterfly{transition-duration:1s;}
+  }
+</style>
+</head>
+<body class="no-scroll">
+
+  <!-- Ambient petals -->
+  <div class="petals" id="petals"></div>
+
+  <!-- INTRO SCREEN -->
+  <div class="intro" id="intro">
+    <span class="intro-corner tl">✿</span>
+    <span class="intro-corner tr">❀</span>
+    <span class="intro-corner bl">❀</span>
+    <span class="intro-corner br">✿</span>
+
+    <div class="intro-frame">
+      <div class="ornament"><span>✿</span><span>·</span><span>✿</span></div>
+      <p class="intro-eyebrow">особливий день · особлива людина</p>
+      <h1 class="intro-title">Привітання <em>з днем</em><br/>народження</h1>
+      <p class="intro-sub">маленька історія, написана метеликами, теплом та найщирішими словами</p>
+      <button class="start-btn" id="startBtn">розпочати привітання</button>
+    </div>
+  </div>
+
+  <!-- BUTTERFLY STAGE -->
+  <div class="stage" id="stage"></div>
+
+  <!-- CENTRAL "PHOTO" (heart of butterflies + 40) -->
+  <div class="center" id="center">
+    <div class="age-wrap">
+      <div class="age">40</div>
+    </div>
+    <div class="center-title">
+      З Днем Народження
+      <small>сорок · нівроку</small>
+    </div>
+  </div>
+
+  <!-- WISHES SCROLL -->
+  <main class="wishes" id="wishes">
+
+    <div class="wish center-align">
+      <span class="wish-icon">✿</span>
+      <div class="wish-num">прелюдія</div>
+      <p class="wish-text">
+        <em>Сорок років</em> — це <strong>кругла, чарівна та нівроку дата</strong>.
+        Дата, яка звучить як тихий акорд: гідно, тепло, із внутрішнім світлом.
+      </p>
+      <hr class="wish-divider" />
+    </div>
+
+    <div class="wish">
+      <div class="wish-num">i</div>
+      <p class="wish-text">
+        Бажаю Вам <strong>безмежного терпіння та ніжної любові</strong>
+        з Вашими дітьми — щоб кожен їхній сміх лунав як музика, а маленькі негаразди
+        танули швидше за ранковий туман.
+      </p>
+      <hr class="wish-divider" />
+    </div>
+
+    <div class="wish">
+      <div class="wish-num">ii</div>
+      <p class="wish-text">
+        Міцного <strong>здоров'я</strong> — щирого, спокійного, без зайвих тривог.
+        І такого <strong>щастя</strong>, яке відчувається у дрібницях: у каві зранку,
+        у вечірньому промені, у теплій тиші вдома.
+      </p>
+      <hr class="wish-divider" />
+    </div>
+
+    <div class="wish">
+      <div class="wish-num">iii</div>
+      <p class="wish-text">
+        І окремо — <strong>витримки з 4-В класом</strong>. Вони вже зовсім дорослі,
+        зовсім інші, ніж були першачками. Ще трошки — і випуск.
+        Нехай ці останні місяці будуть світлими, а прощання — теплим, а не сумним.
+      </p>
+      <hr class="wish-divider" />
+    </div>
+
+    <div class="wish">
+      <div class="wish-num">iv</div>
+      <p class="wish-text">
+        Нехай кожен ранок починається з <strong>усмішки</strong>,
+        а кожен вечір — з відчуття, що день прожито недарма.
+        Нехай поруч завжди будуть ті, хто розуміє Вас із півпогляду.
+      </p>
+      <hr class="wish-divider" />
+    </div>
+
+    <div class="wish">
+      <div class="wish-num">v</div>
+      <p class="wish-text">
+        І ще — від мене особисто. Залишайтеся такою ж <strong>сонячною,
+        мудрою та натхненною</strong> людиною. Бо хороші вчителі — це ті,
+        кого учні згадують через роки. А Ви — саме така.
+      </p>
+      <hr class="wish-divider" />
+    </div>
+
+    <div class="signature">
+      <p class="signature-line">
+        З найщирішими побажаннями,<br/>
+        теплом серця та найкращими думками ♡
+      </p>
+      <p class="signature-name">валентино</p>
+      <button class="replay-btn" id="replayBtn">переглянути ще раз</button>
+      <p class="interactive-hint">✿ натисніть будь-де на сторінці — і з'явиться ще один метелик ✿</p>
+    </div>
+  </main>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint" id="scrollHint">прокрутіть вниз<br/>щоб прочитати побажання</div>
+
+<script>
+(() => {
+  /* ════════════════════════════════════════════
+     BUTTERFLY GENERATION
+     ════════════════════════════════════════════ */
+  const palette = [
+    { wing:'#ffc8d6', accent:'#ff9eb5', stroke:'#d6647e' },
+    { wing:'#ffd1dc', accent:'#ffb3c6', stroke:'#c2607a' },
+    { wing:'#fbb6ce', accent:'#f48fb1', stroke:'#b8546e' },
+    { wing:'#ffe0eb', accent:'#ffc1d4', stroke:'#cf7090' },
+    { wing:'#fad1e0', accent:'#f4a8c2', stroke:'#a85273' },
+    { wing:'#ffb6c1', accent:'#ff8da1', stroke:'#c0526c' }
+  ];
+
+  let butterflyId = 0;
+  function makeButterfly(scheme){
+    const id = ++butterflyId;
+    const c = scheme || palette[Math.floor(Math.random()*palette.length)];
+    const gradId = 'wg'+id;
+    return `
+      <svg viewBox="0 0 50 40" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="${gradId}" cx="35%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="${c.wing}" />
+            <stop offset="60%" stop-color="${c.accent}" />
+            <stop offset="100%" stop-color="${c.stroke}" stop-opacity=".7"/>
+          </radialGradient>
+        </defs>
+        <g class="wing left">
+          <path d="M25,20 C14,3 -2,7 2,20 C-2,33 14,37 25,20 Z"
+                fill="url(#${gradId})" stroke="${c.stroke}" stroke-width=".4" stroke-opacity=".5"/>
+          <circle cx="9" cy="13" r="1.6" fill="${c.stroke}" opacity=".55"/>
+          <circle cx="7" cy="22" r="1.1" fill="${c.stroke}" opacity=".4"/>
+          <circle cx="13" cy="27" r=".8" fill="#fff" opacity=".6"/>
+        </g>
+        <g class="wing right">
+          <path d="M25,20 C36,3 52,7 48,20 C52,33 36,37 25,20 Z"
+                fill="url(#${gradId})" stroke="${c.stroke}" stroke-width=".4" stroke-opacity=".5"/>
+          <circle cx="41" cy="13" r="1.6" fill="${c.stroke}" opacity=".55"/>
+          <circle cx="43" cy="22" r="1.1" fill="${c.stroke}" opacity=".4"/>
+          <circle cx="37" cy="27" r=".8" fill="#fff" opacity=".6"/>
+        </g>
+        <ellipse cx="25" cy="20" rx="1.2" ry="8.5" fill="#4a2530"/>
+        <circle cx="25" cy="12" r="1.6" fill="#4a2530"/>
+        <path d="M25,11 Q22.5,7 20.5,6.5" stroke="#4a2530" stroke-width=".5" fill="none" stroke-linecap="round"/>
+        <path d="M25,11 Q27.5,7 29.5,6.5" stroke="#4a2530" stroke-width=".5" fill="none" stroke-linecap="round"/>
+        <circle cx="20.5" cy="6.5" r=".7" fill="${c.stroke}"/>
+        <circle cx="29.5" cy="6.5" r=".7" fill="${c.stroke}"/>
+      </svg>`;
+  }
+
+  /* ════════════════════════════════════════════
+     HEART CURVE — final positions for butterflies
+     parametric: x = 16 sin³(t), y = 13 cos t − 5 cos 2t − 2 cos 3t − cos 4t
+     ════════════════════════════════════════════ */
+  function heartPoint(t, scale, cx, cy){
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = 13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t);
+    return { x: cx + scale*x, y: cy - scale*y };
+  }
+
+  /* ════════════════════════════════════════════
+     SETUP
+     ════════════════════════════════════════════ */
+  const stage = document.getElementById('stage');
+  const intro = document.getElementById('intro');
+  const center = document.getElementById('center');
+  const wishesEl = document.getElementById('wishes');
+  const scrollHint = document.getElementById('scrollHint');
+  const NUM = window.innerWidth < 600 ? 26 : 34;
+  const butterflies = [];
+
+  function layoutButterflies(){
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const cx = w/2;
+    const cy = h/2;
+    // Heart scale based on smaller dimension
+    const baseScale = Math.min(w,h);
+    const scale = (baseScale < 600 ? baseScale*0.022 : baseScale*0.028);
+
+    butterflies.forEach((b, i) => {
+      const t = (i / NUM) * Math.PI * 2;
+      // Add small jitter so butterflies don't sit on perfect math line
+      const jitter = 6 + Math.random()*8;
+      const ang = Math.random()*Math.PI*2;
+      const p = heartPoint(t, scale, cx, cy);
+      b.finalX = p.x + Math.cos(ang)*jitter;
+      b.finalY = p.y + Math.sin(ang)*jitter;
+    });
+  }
+
+  function spawnButterflies(){
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const cx = w/2, cy = h/2;
+
+    for (let i = 0; i < NUM; i++){
+      const div = document.createElement('div');
+      div.className = 'butterfly';
+      div.innerHTML = makeButterfly(palette[i % palette.length]);
+
+      // Random off-screen start position
+      const ang = Math.random()*Math.PI*2;
+      const dist = Math.max(w,h)*0.75;
+      const startX = cx + Math.cos(ang)*dist;
+      const startY = cy + Math.sin(ang)*dist;
+      div.style.left = startX+'px';
+      div.style.top = startY+'px';
+
+      // Wing animation variation
+      const wings = div.querySelectorAll('.wing');
+      wings.forEach((wg) => {
+        wg.style.animationDelay = (Math.random()*.3)+'s';
+        wg.style.animationDuration = (.24 + Math.random()*.18)+'s';
+      });
+
+      // Random rotation tilt
+      const tilt = (Math.random()-.5)*30;
+      div.dataset.tilt = tilt;
+      div.style.transform = `translate(-50%,-50%) rotate(${tilt}deg)`;
+
+      // Per-butterfly transition duration variation
+      const dur = (2.2 + Math.random()*1.2).toFixed(2);
+      div.style.transitionDuration = `${dur}s, ${dur}s, .8s`;
+
+      // Hover interactivity → small bounce
+      div.addEventListener('mouseenter', () => {
+        div.classList.add('bounce');
+        setTimeout(()=>div.classList.remove('bounce'), 800);
+      });
+      div.addEventListener('click', (e) => {
+        e.stopPropagation();
+        flyAway(div);
+      });
+
+      stage.appendChild(div);
+      butterflies.push({ div, finalX:0, finalY:0, startX, startY, tilt });
+    }
+    layoutButterflies();
+  }
+
+  function flyAway(div){
+    const w = window.innerWidth, h = window.innerHeight;
+    const ang = Math.random()*Math.PI*2;
+    const dist = Math.max(w,h)*.6;
+    const x = parseFloat(div.style.left)+Math.cos(ang)*dist;
+    const y = parseFloat(div.style.top)+Math.sin(ang)*dist;
+    const orig = { l:div.style.left, t:div.style.top };
+    div.style.transitionDuration = '1.4s, 1.4s, .8s';
+    div.style.left = x+'px';
+    div.style.top = y+'px';
+    setTimeout(() => {
+      div.style.left = orig.l;
+      div.style.top = orig.t;
+    }, 1400);
+  }
+
+  /* ════════════════════════════════════════════
+     PETALS
+     ════════════════════════════════════════════ */
+  function makePetals(){
+    const c = document.getElementById('petals');
+    const n = window.innerWidth < 600 ? 12 : 22;
+    for (let i = 0; i < n; i++){
+      const p = document.createElement('div');
+      p.className = 'petal';
+      p.style.left = (Math.random()*100)+'%';
+      p.style.animationDuration = (10 + Math.random()*14)+'s';
+      p.style.animationDelay = (Math.random()*15)+'s';
+      const s = .5 + Math.random()*1.4;
+      p.style.width = (8*s)+'px';
+      p.style.height = (8*s)+'px';
+      c.appendChild(p);
+    }
+  }
+
+  /* ════════════════════════════════════════════
+     SPARKLES around the centre after heart forms
+     ════════════════════════════════════════════ */
+  function makeSparkles(){
+    const sparkleChars = ['✦','✧','✿','❀','•'];
+    const c = center;
+    for (let i = 0; i < 8; i++){
+      const s = document.createElement('span');
+      s.className = 'sparkle';
+      s.textContent = sparkleChars[Math.floor(Math.random()*sparkleChars.length)];
+      const ang = (i/8)*Math.PI*2;
+      const r = 130 + Math.random()*40;
+      s.style.left = `calc(50% + ${Math.cos(ang)*r}px)`;
+      s.style.top = `calc(50% + ${Math.sin(ang)*r}px)`;
+      s.style.animationDelay = (.1*i)+'s';
+      s.style.fontSize = (.9 + Math.random()*.8)+'rem';
+      c.appendChild(s);
+    }
+  }
+
+  /* ════════════════════════════════════════════
+     START SEQUENCE
+     ════════════════════════════════════════════ */
+  function startGreeting(){
+    document.body.classList.remove('no-scroll');
+    intro.classList.add('hidden');
+
+    // Stagger butterfly entrance
+    butterflies.forEach((b, i) => {
+      setTimeout(() => {
+        b.div.style.opacity = '.95';
+        b.div.style.left = b.finalX+'px';
+        b.div.style.top = b.finalY+'px';
+        b.div.style.transform = `translate(-50%,-50%) rotate(${b.tilt}deg)`;
+      }, 200 + i*70);
+    });
+
+    // Reveal centre
+    setTimeout(() => {
+      center.classList.add('show');
+      makeSparkles();
+    }, 2500);
+
+    // Reveal wishes & scroll hint
+    setTimeout(() => {
+      wishesEl.classList.add('show');
+      scrollHint.classList.add('show');
+    }, 4200);
+
+    // Hide scroll hint once user scrolls
+    const onScroll = () => {
+      if (window.scrollY > 50){
+        scrollHint.classList.remove('show');
+        window.removeEventListener('scroll', onScroll);
+      }
+    };
+    window.addEventListener('scroll', onScroll);
+  }
+
+  /* ════════════════════════════════════════════
+     WISH REVEAL ON SCROLL
+     ════════════════════════════════════════════ */
+  function observeWishes(){
+    const wishes = document.querySelectorAll('.wish, .signature');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting){
+          e.target.classList.add('visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold:.2, rootMargin:'0px 0px -10% 0px' });
+    wishes.forEach((w) => io.observe(w));
+  }
+
+  /* ════════════════════════════════════════════
+     CLICK-TO-SPAWN BUTTERFLY
+     ════════════════════════════════════════════ */
+  function bindClickSpawn(){
+    document.addEventListener('click', (e) => {
+      // Ignore button/intro/interactive clicks
+      if (e.target.closest('button')) return;
+      if (intro && !intro.classList.contains('hidden')) return;
+      if (e.target.closest('.butterfly')) return;
+
+      const div = document.createElement('div');
+      div.className = 'butterfly';
+      div.innerHTML = makeButterfly();
+      div.style.position = 'fixed';
+      div.style.zIndex = '70';
+      div.style.left = e.clientX+'px';
+      div.style.top = e.clientY+'px';
+      div.style.opacity = '1';
+      div.style.transitionDuration = '4s, 4s, 1s';
+
+      const wings = div.querySelectorAll('.wing');
+      wings.forEach((wg) => {
+        wg.style.animationDuration = (.22 + Math.random()*.15)+'s';
+      });
+
+      document.body.appendChild(div);
+
+      // Float upward
+      requestAnimationFrame(() => {
+        const ang = -Math.PI/2 + (Math.random()-.5)*1.2;
+        const dist = 200 + Math.random()*300;
+        div.style.left = (e.clientX + Math.cos(ang)*dist)+'px';
+        div.style.top = (e.clientY + Math.sin(ang)*dist)+'px';
+        div.style.opacity = '0';
+      });
+      setTimeout(()=>div.remove(), 4200);
+    });
+  }
+
+  /* ════════════════════════════════════════════
+     REPLAY
+     ════════════════════════════════════════════ */
+  function replay(){
+    // remove existing butterflies & sparkles
+    stage.innerHTML = '';
+    butterflies.length = 0;
+    center.classList.remove('show');
+    center.querySelectorAll('.sparkle').forEach(s => s.remove());
+    wishesEl.classList.remove('show');
+    document.querySelectorAll('.wish, .signature').forEach(w => w.classList.remove('visible'));
+    window.scrollTo({ top:0, behavior:'smooth' });
+    intro.classList.remove('hidden');
+    document.body.classList.add('no-scroll');
+
+    setTimeout(() => {
+      spawnButterflies();
+      observeWishes();
+    }, 700);
+  }
+
+  /* ════════════════════════════════════════════
+     RESIZE — recalculate heart formation
+     ════════════════════════════════════════════ */
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      if (intro.classList.contains('hidden')){
+        layoutButterflies();
+        butterflies.forEach((b) => {
+          b.div.style.left = b.finalX+'px';
+          b.div.style.top = b.finalY+'px';
+        });
+      }
+    }, 200);
+  });
+
+  /* ════════════════════════════════════════════
+     INIT
+     ════════════════════════════════════════════ */
+  document.addEventListener('DOMContentLoaded', () => {
+    makePetals();
+    spawnButterflies();
+    observeWishes();
+    bindClickSpawn();
+    document.getElementById('startBtn').addEventListener('click', startGreeting);
+    document.getElementById('replayBtn').addEventListener('click', replay);
+  });
+})();
+</script>
+</body>
+</html>
